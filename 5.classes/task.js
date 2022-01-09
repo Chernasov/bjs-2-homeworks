@@ -101,7 +101,7 @@ class Student {
 			return "Ошибка, оценка должна быть числом от 1 до 5"
 		}
 		if (this[subject] === undefined) {
-			this[subject] : [];
+			this[subject] = [];
 		}
 		this[subject].push(mark)
 	}
