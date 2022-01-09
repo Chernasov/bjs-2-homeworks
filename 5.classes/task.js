@@ -115,6 +115,26 @@ class Student {
 	}
 	
 	getAverage() {
-		
+		let sumLength = 0;
+		let summ = 0;
+		for (const [key, value] of Object.entries(this)) {
+			if (key === 'name') {
+				continue
+			}
+			const sum = value.reduce((acc, mark) => acc + mark);
+			summ += sum;
+			sumLength += value.length;
+		}
+		return summ / sumLength;
+	}
+	
+	exclude(reason) {
+		this.excluded = reason;
+		for (const key of Object.keys(this)) {
+			if (key === 'name') {
+				continue
+			}
+			delete key;
+		}
 	}
 }
