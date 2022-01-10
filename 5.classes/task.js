@@ -76,7 +76,7 @@ class Library {
 	
 	findBookBy(type, value) {
 		const item = this.books.find((book) => book[type] === value);
-		if (item === undefined) {
+		if (!item) {
 			return null;
 		}
 		return item;
@@ -87,7 +87,7 @@ class Library {
 		if (index === -1) {
 			return null;
 		}
-		return this.books.splice(index, 1)
+		return this.books.splice(index, 1)[0]
 	}
 }
 
@@ -100,14 +100,14 @@ class Student {
 		if (mark < 1 || mark > 5) {
 			return "Ошибка, оценка должна быть числом от 1 до 5"
 		}
-		if (this[subject] === undefined) {
+		if (!this[subject]) {
 			this[subject] = [];
 		}
 		this[subject].push(mark)
 	}
 	
 	getAverageBySubject(subject) {
-		if (this[subject] === undefined) {
+		if (!this[subject]) {
 			return "Несуществующий предмет";
 		}
 		const sum = this[subject].reduce((acc, mark) => acc + mark);
@@ -129,12 +129,12 @@ class Student {
 	}
 	
 	exclude(reason) {
-		this.excluded = reason;
-		for (const key of Object.keys(this)) {
+/*		for (const key of Object.keys(this)) {
 			if (key === 'name') {
 				continue
 			}
-			delete key;
-		}
+			delete this[key];
+		}*/
+		this.excluded = reason;
 	}
 }

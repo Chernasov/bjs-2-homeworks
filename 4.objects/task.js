@@ -16,15 +16,15 @@ Student.prototype.addMark = function (mark) {
 }
 
 Student.prototype.addMarks = function (...marks) {
-	 if(this.marks === undefined){
-		this.marks = [];
-    }
-	for (const mark of marks) {
-		this.marks.push(mark)
+	if (!this.marks) {
+		this.marks = marks
+	} else {
+		this.marks = this.marks.concat(marks)
 	}
 }
 
 Student.prototype.getAverage = function() {
+	if (!this.marks) {return 'нет оценок'}
 	const sum = this.marks.reduce((acc, mark) => acc + mark);
 	return sum / this.marks.length;
 }
