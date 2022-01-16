@@ -41,7 +41,7 @@ class AlarmClock {
 	start() {
 		if (this.timerId === null) {
 		const timer = setInterval(() => {
-			this.alarmCollection.filter((item) => item.time === getCurrentFormattedTime).forEach((item) => item.callback);
+			this.alarmCollection.filter((item) => item.time === this.getCurrentFormattedTime()).forEach((item) => item.callback);
 		}, 1000);
 		this.timerId = timer;
 		}
@@ -60,7 +60,7 @@ class AlarmClock {
 	}
 	
 	clearAlarms() {
-		stop();
+		this.stop();
 		this.alarmCollection.splice(0, this.alarmCollection.length);
 	}
 }
