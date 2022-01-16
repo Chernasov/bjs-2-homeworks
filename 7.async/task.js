@@ -34,15 +34,14 @@ class AlarmClock {
 
 	getCurrentFormattedTime() {
 		let now = new Date();
-		let timeNow = now.getHours() + ":" + now.getMinutes();
-		return timeNow;
+		return ("0" + now.getHours()).slice(-2)   + ":" + ("0" + now.getMinutes()).slice(-2);		
 	}
 
 	start() {
 		if (this.timerId === null) {
 		const timer = setInterval(() => {
-			this.alarmCollection.filter((item) => item.time === this.getCurrentFormattedTime()).forEach((item) => item.callback);
-		}, 1000);
+			this.alarmCollection.filter((item) => item.time === this.getCurrentFormattedTime()).forEach((item) => item.callback());
+		}, 10000);
 		this.timerId = timer;
 		}
 	}
