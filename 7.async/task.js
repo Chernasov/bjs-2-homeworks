@@ -60,6 +60,6 @@ class AlarmClock {
 	
 	clearAlarms() {
 		this.stop();
-		this.alarmCollection.splice(0, this.alarmCollection.length);
+		this.alarmCollection = [];
 	}
 }
