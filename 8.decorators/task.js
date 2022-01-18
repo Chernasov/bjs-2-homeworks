@@ -24,7 +24,9 @@ function debounceDecoratorNew(func, ms) {
     let timeout;
 	
 	return function (...args) {
-		func.apply(this, args);
+		if (!timeout) {
+			func.apply(this, args);
+		}
 		clearTimeout(timeout);
 		timeout = setTimeout(() => {
 			func.apply(this, args);
@@ -36,13 +38,15 @@ function debounceDecorator2(func) {
     let timeout;
 	
 	function wrapper(...args) {
-		wrapper.count.push(args);
-		func.apply(this, args);
+		wrapper.count++;
+		if (!timeout) {
+			func.apply(this, args);
+		}
 		clearTimeout(timeout);
 		timeout = setTimeout(() => {
 			func.apply(this, args);
 		}, ms);
 	};
-	wrapper.count = [];
-	return wrapper
+	wrapper.count = 0;
+	return wrapper  
 }
